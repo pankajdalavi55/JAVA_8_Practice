@@ -4,29 +4,32 @@ import java.util.List;
 
 public class StreamUser {
 
-    private String id;
+    private Long id;
     private String name;
     private String department;
     private List<String> subjects;
-    private String stifund;
+    private double stifund;
 
-    public StreamUser(String id) {
+    private String gender;
+
+    public StreamUser(Long id) {
         this.id = id;
     }
 
-    public StreamUser(String id, String name, String department, List<String> subjects, String stifund) {
+    public StreamUser(Long id, String name, String department, List<String> subjects, double stifund, String gender) {
         this.id = id;
         this.name = name;
         this.department = department;
         this.subjects = subjects;
         this.stifund = stifund;
+        this.gender = gender;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,22 +57,31 @@ public class StreamUser {
         this.subjects = subjects;
     }
 
-    public String getStifund() {
+    public double getStifund() {
         return stifund;
     }
 
-    public void setStifund(String stifund) {
+    public void setStifund(double stifund) {
         this.stifund = stifund;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
     public String toString() {
         return "StreamUser{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", department='" + department + '\'' +
                 ", subjects=" + subjects +
-                ", stifund='" + stifund + '\'' +
-                '}';
+                ", stifund=" + stifund +
+                ", gender='" + gender + '\'' +
+                "}\n";
     }
 }
