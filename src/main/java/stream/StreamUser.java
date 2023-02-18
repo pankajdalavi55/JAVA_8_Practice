@@ -80,7 +80,7 @@ public class StreamUser {
                 ", name='" + name + '\'' +
                 ", department='" + department + '\'' +
                 ", subjects=" + subjects +
-                ", stifund=" + stifund +
+                ", sti-fund=" + stifund +
                 ", gender='" + gender + '\'' +
                 "}\n";
     }
