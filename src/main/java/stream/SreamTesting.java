@@ -1,10 +1,8 @@
 package stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SreamTesting {
 
@@ -40,13 +38,14 @@ public class SreamTesting {
         System.out.println(actingLearner);
 
         System.out.println("---------------------------------Filter-------------------------------");
+        System.out.println("4. find all the unique subject of science department");
         //3. find all the unique subject of science department
-        List<List<String>> scienceSub = list
+        Set<String> scienceSub = list
                 .stream()
-                .filter((obj)->obj.getDepartment().equalsIgnoreCase("Science"))
-                .map((obj)->obj.getSubjects().stream().collect(Collectors.toList()))
-                .map()
-                .collect(Collectors.toList());
+                .filter((obj) -> obj.getDepartment().equalsIgnoreCase("Science"))
+                .map(StreamUser::getSubjects)
+                .flatMap(Collection::stream)//flatMap(str-str.stream())
+                .collect(Collectors.toSet());
         System.out.println(scienceSub);
 
         System.out.println("---------------------------------Filter-------------------------------");
@@ -72,7 +71,7 @@ public class SreamTesting {
 
         List<String> departmnets = list
                 .stream()
-                .map(obj->obj.getDepartment())
+                .map(StreamUser::getDepartment)
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(departmnets);
@@ -92,27 +91,27 @@ public class SreamTesting {
 
     private static List<StreamUser> getStreamObjectTestData() {
 
-        List<StreamUser> users = new ArrayList<StreamUser>();
+        List<StreamUser> users = new ArrayList<>();
 
-        users.add(new StreamUser(1l, "Raj", "Science",
+        users.add(new StreamUser(1L, "Raj", "Science",
                 Arrays.asList("Math", "Physics"), 12000.40, "Male"));
-        users.add(new StreamUser(12l, "John", "Science",
+        users.add(new StreamUser(12L, "John", "Science",
                 Arrays.asList("Chemistry", "Physics"), 5000, "Male"));
-        users.add(new StreamUser(13l, "Daniel", "Science",
+        users.add(new StreamUser(13L, "Daniel", "Science",
                 Arrays.asList("Chemistry", "Physics", "Math"), 8000.50, "Male"));
-        users.add(new StreamUser(16l, "Smith", "Commerce",
+        users.add(new StreamUser(16L, "Smith", "Commerce",
                 Arrays.asList("Account", "GST"), 11000, "Male"));
-        users.add(new StreamUser(18l, "Kalpesh", "Art",
-                Arrays.asList("Music"), 5000, "Male"));
-        users.add(new StreamUser(19l, "Jeneliya", "Art",
+        users.add(new StreamUser(18L, "Kamlesh", "Art",
+                List.of("Music"), 5000, "Male"));
+        users.add(new StreamUser(19L, "Jenelle", "Art",
                 Arrays.asList("Acting"), 15000, "Female"));
-        users.add(new StreamUser(17l, "Kapil", "Art",
+        users.add(new StreamUser(17L, "Kapil", "Art",
                 Arrays.asList("Comedy", "Singing"), 9000, "Male"));
-        users.add(new StreamUser(21l, "sara", "Science",
+        users.add(new StreamUser(21L, "sara", "Science",
                 Arrays.asList("Biology", "Atomic science"), 50000, "Female"));
-        users.add(new StreamUser(23l, "Kyila", "HR",
+        users.add(new StreamUser(23L, "Kyla", "HR",
                 Arrays.asList("Psychology", "Management"), 5000, "Male"));
-        users.add(new StreamUser(14l, "Ranveer", "Art",
+        users.add(new StreamUser(14L, "Ran veer", "Art",
                 Arrays.asList("Acting", "Singing"), 5000, "Male"));
 
         return users;
