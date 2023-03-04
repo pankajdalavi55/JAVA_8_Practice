@@ -79,13 +79,87 @@ public class SreamTesting {
         System.out.println("---------------------------------Map-------------------------------");
         System.out.println("2. Find all the distinct departments");
 
+        List<String> departments = list
+                .stream()
+                .map(StreamUser::getDepartment)
+                .distinct().collect(Collectors.toList());
+
+        System.out.println(departments);
+
+        System.out.println("---------------------------------Summing-------------------------------");
+        System.out.println("2. Find total salary");
+
+        Double totalSalary = list
+                .stream().mapToDouble(StreamUser::getStifund).sum();
+        //list.stream().collect(Collectors.summingDouble(StreamUser::getStifund))
+        System.out.println("Total sti fund require :"+ totalSalary);
+
+        OptionalDouble maxSalary = list
+                .stream().mapToDouble(StreamUser::getStifund).max();
+        System.out.println("Max sti fund :"+maxSalary);
+
+        OptionalDouble minSalary = list
+                .stream().mapToDouble(StreamUser::getStifund).min();
+        System.out.println("Min sti fund :"+minSalary);
+
+        OptionalDouble avgSalary = list
+                .stream().mapToDouble(StreamUser::getStifund).average();
+        System.out.println("AVG sti fund :"+avgSalary);
+
+
+        System.out.println("---------------------------------Sorting-------------------------------");
+        System.out.println("2. sort users by salary");
+
+        List<StreamUser> sortBySalary = list
+                .stream()
+                .sorted(Comparator.comparingDouble(StreamUser::getStifund).reversed())
+                .collect(Collectors.toList());
+        System.out.println(sortBySalary);
+
+        System.out.println("---------------------------------Sorting-------------------------------");
+        System.out.println("2. find streamuser having 2 highest salary");
+
+        Optional<StreamUser> secondHighestSalaryUser = list
+                .stream()
+                .sorted(Comparator.comparingDouble(StreamUser::getStifund).reversed())
+                .skip(1)
+                .findFirst();
+        System.out.println(secondHighestSalaryUser.get());
+
+        System.out.println("2. find streamuser having 3rd highest salary");
+
+        Optional<StreamUser> thirdHighestSalaryUser = list
+                .stream()
+                .sorted(Comparator.comparingDouble(StreamUser::getStifund).reversed())
+                .skip(2)
+                .findFirst();
+        System.out.println(thirdHighestSalaryUser.get());
+
+        System.out.println("---------------------------------Map-------------------------------");
+        System.out.println("2. find StreamUser having 2 highest salary");
+
+//        Map<String, List<String>> passingFailing =
+//                list.stream()
+//                        .collect(Collectors.partitioningBy(s->s.getGender().equalsIgnoreCase("Male"),
+//                               Collectors.toMap("Male", new ArrayList<>().add()) );
 
 
 
+        System.out.println("---------------------------------Comparator-------------------------------");
+        System.out.println("Sort by user name..!");
 
+        List<StreamUser> usersByName = list.stream()
+                .sorted(Comparator.comparing(StreamUser::getName))
+                .collect(Collectors.toList());
+        System.out.println(usersByName);
 
+        System.out.println("---------------------------------Map-------------------------------");
+        System.out.println("Store user name with salary in map..!");
 
-
+        Map<String, Double> userWithSalary = list.stream()
+                .collect(Collectors.toMap(StreamUser::getName, StreamUser::getStifund));
+        userWithSalary.entrySet().
+                stream().forEach((t)-> System.out.println("Name :"+t.getKey()+" Salary :"+ t.getValue()));
 
     }
 

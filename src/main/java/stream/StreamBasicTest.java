@@ -5,6 +5,7 @@ import com.sun.security.jgss.GSSUtil;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamBasicTest {
@@ -43,6 +44,9 @@ public class StreamBasicTest {
                 .collect(Collectors.toList());
         System.out.println(strBuilder);
 
+        IntStream stream = "12345_abcdefg".chars();
+        System.out.println(stream);
 
+        Stream<String> stream1 = Stream.of("A$B$C".split("\\$"));
     }
 }
