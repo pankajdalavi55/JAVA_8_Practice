@@ -126,6 +126,7 @@ public class SreamTesting {
                 .findFirst();
         System.out.println(secondHighestSalaryUser.get());
 
+
         System.out.println("2. find streamuser having 3rd highest salary");
 
         Optional<StreamUser> thirdHighestSalaryUser = list
