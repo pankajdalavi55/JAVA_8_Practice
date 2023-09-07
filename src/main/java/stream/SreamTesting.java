@@ -164,7 +164,7 @@ public class SreamTesting {
 
     }
 
-    private static List<StreamUser> getStreamObjectTestData() {
+    public static List<StreamUser> getStreamObjectTestData() {
 
         List<StreamUser> users = new ArrayList<>();
 
